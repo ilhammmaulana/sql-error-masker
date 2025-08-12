@@ -15,7 +15,7 @@ A framework-agnostic PHP library to detect, classify, and **mask** SQL error mes
 ## Installation
 
 ```bash
-composer require kodikas/sql-error-masker
+composer require ilham/sql-error-masker
 ````
 
 
