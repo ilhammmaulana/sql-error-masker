@@ -85,7 +85,7 @@ final class SqlErrorMasker implements ErrorMasker
         '/Connection: \w+/' => 'Connection: [REDACTED]',
         '/[A-Za-z]:\\\\[^\\s]+/' => '[PATH]',
         '/\/[^\s]+\.php/' => '[PATH]',
-        '/:\d+\)/' => ':[LINE])',
+        '/:\d+(\))?/' => ':[LINE])',
     ];
 
     /** Max length of processed messages to avoid log bloat. */
@@ -176,7 +176,7 @@ final class SqlErrorMasker implements ErrorMasker
 
         if ($level === self::LOG_LEVEL_WARNING) {
             $masked = $this->maskSensitive($msg);
-            if (preg_match('/SQLSTATE\[[^\]]+\]:[^:]+/i', $masked, $mm)) {
+            if (preg_match('/SQLSTATE\[[^\]]+\]:.+/i', $masked, $mm)) {
                 return $mm[0];
             }
             $info = $this->identify($msg);

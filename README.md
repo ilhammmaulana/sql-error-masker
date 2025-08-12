@@ -9,13 +9,13 @@ A framework-agnostic PHP library to detect, classify, and **mask** SQL error mes
 - Mask sensitive data (table names, column values, UUIDs, file paths)
 - Boolean helpers (`isDuplicateData`, `isResourceNotFound`, etc.)
 - Multiple log levels (`debug`, `info`, `warning`, `error`)
-- Works in **any PHP project** and integrates easily with **Laravel**
+ - Works in **any PHP project** and integrates easily with **Laravel** or **CodeIgniter**
 
 
 ## Installation
 
 ```bash
-composer require ilhammmaulana/sql-error-masker
+composer require kodikas/sql-error-masker
 ````
 
 
@@ -28,7 +28,7 @@ composer require ilhammmaulana/sql-error-masker
 
 require 'vendor/autoload.php';
 
-use Kodikas\SqlErrorMasker\SqlErrorMasker;
+use Ilham\SqlErrorMasker\SqlErrorMasker;
 
 $masker = new SqlErrorMasker();
 
@@ -98,6 +98,29 @@ public function store()
         return response()->json([
             'message' => SqlErrorMasker::userMessage($e->getMessage())
         ], 500);
+    }
+}
+```
+
+---
+
+### 3. CodeIgniter Example
+
+```php
+use Ilham\\SqlErrorMasker\\SqlErrorMasker;
+
+class UserController extends \\CodeIgniter\\Controller
+{
+    public function store()
+    {
+        $masker = new SqlErrorMasker();
+        try {
+            // Some DB operation...
+        } catch (\\Throwable $e) {
+            log_message('error', $masker->mask($e->getMessage(), SqlErrorMasker::LOG_LEVEL_ERROR));
+            return $this->response->setStatusCode(500)
+                ->setBody($masker->userMessage($e->getMessage()));
+        }
     }
 }
 ```
