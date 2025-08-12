@@ -1,5 +1,5 @@
 {
-  "name": "kodikas/sql-error-masker",
+  "name": "ilham/sql-error-masker",
   "description": "Framework-agnostic SQL error masking and classification.",
   "type": "library",
   "license": "MIT",
