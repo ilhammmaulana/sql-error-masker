@@ -1,7 +1,7 @@
 
 # SQL Error Masker
 
-A framework-agnostic PHP library to detect, classify, and **mask** SQL error messages — protecting logs and users while preserving useful debug context.
+A framework-agnostic PHP library to detect, classify, and **mask** SQL error messages protecting logs and users while preserving useful debug context.
 
 ## Features
 - Identify SQLSTATE & vendor-specific error codes
