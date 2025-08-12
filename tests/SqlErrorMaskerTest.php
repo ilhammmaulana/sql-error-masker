@@ -32,7 +32,7 @@ final class SqlErrorMaskerTest extends TestCase
         $masked = $this->masker->mask($msg, SqlErrorMasker::LOG_LEVEL_INFO);
 
         $this->assertStringContainsString('Database operation failed:', $masked);
-        $this->assertStringContainsString('Query error', $masked);
+        $this->assertStringContainsString('Query syntax error', $masked);
     }
 
     public function testMaskWarningKeepsSqlstateButRedactsSensitive(): void

@@ -13,8 +13,11 @@
   ],
   "autoload": {
     "psr-4": {
-      "Kodikas\\SqlErrorMasker\\": "src/"
+      "Ilham\\SqlErrorMasker\\": "src/"
     }
+  },
+  "scripts": {
+    "test": "phpunit"
   },
   "require": {
     "php": ">=8.1"
